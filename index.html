@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rei das Multimídias - Transforme seu carro!</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts - Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* Variáveis de Cores - Edite aqui para mudar a paleta */
+        :root {
+            --color-primary-dark: #0A0A0A; /* Fundo principal e seções mais escuras (quase preto) */
+            --color-secondary-dark: #1A1A1A; /* Fundo de seções intermediárias e gradientes (cinza escuro) */
+            --color-tertiary-dark: #2D2D2D; /* Fundo de cards/elementos (cinza mais claro) */
+            --color-text-light: #ffffff; /* Cor padrão do texto (branco) */
+            --color-text-muted: #CBD5E0; /* Cor para texto mais discreto (originalmente gray-300/400 de Tailwind) */
+            --color-accent-golden: #FFD700; /* Cor do dourado para destaque e logo "Rei" */
+            --color-whatsapp-green: #10B981; /* Cor de fundo do botão WhatsApp */
+            --color-whatsapp-green-hover: #0F9F72; /* Cor de fundo do botão WhatsApp ao passar o mouse */
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--color-primary-dark);
+            background-image: radial-gradient(at 50% 0%, var(--color-secondary-dark) 0%, var(--color-primary-dark) 70%);
+            color: var(--color-text-light);
+            overflow-x: hidden; /* Evita rolagem horizontal */
+        }
+        
+        /* Estilo para a parte "Rei" do logo */
+        .logo-rei {
+            color: var(--color-accent-golden);
+        }
+
+        /* Classe para bordas douradas */
+        .golden-border {
+            border: 2px solid var(--color-accent-golden);
+        }
+
+        /* Estilos para botões do WhatsApp */
+        .whatsapp-button {
+            background-color: var(--color-whatsapp-green);
+            color: var(--color-text-light);
+             /* Mantendo classes Tailwind para formatação */
+        }
+        .whatsapp-button:hover {
+            background-color: var(--color-whatsapp-green-hover);
+        }
+
+        /* Estilos para animações de fade-in */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+        .fade-in.appear {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* Estilo para o vídeo responsivo */
+        .video-responsive {
+            overflow: hidden;
+            padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+            position: relative;
+            height: 0;
+        }
+        .video-responsive iframe {
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 100%;
+            position: absolute;
+            border-radius: 1rem; /* Borda arredondada para o vídeo */
+        }
+
+        /* Classes para cards com borda hover dourada */
+        .card-item {
+            background-color: var(--color-tertiary-dark);
+            border: 2px solid var(--color-tertiary-dark); /* Borda inicial da mesma cor do fundo do card */
+            transition: border-color 0.3s ease-in-out; /* Transição suave da borda */
+        }
+        .card-item:hover {
+            border-color: var(--color-accent-golden); /* Borda dourada ao passar o mouse */
+        }
+        .card-item p {
+            color: var(--color-text-muted); /* Texto mais discreto nos cards */
+        }
+
+        /* Cor dos ícones de benefício */
+        .benefit-icon {
+            color: var(--color-whatsapp-green); /* Mantendo o verde para os ícones */
+        }
+
+        /* Ajustes para fundos de seções */
+        .section-primary-dark {
+            background-color: var(--color-primary-dark);
+        }
+        .section-secondary-dark {
+            background-color: var(--color-secondary-dark);
+        }
+
+        /* Estilo específico para o botão flutuante para garantir que seja esférico */
+        .floating-whatsapp-button {
+            width: 64px; /* Largura fixa */
+            height: 64px; /* Altura fixa (igual à largura para ser quadrado) */
+            display: flex; /* Usar flexbox para centralizar o conteúdo */
+            align-items: center; /* Centralizar verticalmente */
+            justify-content: center; /* Centralizar horizontalmente */
+            padding: 0; /* Remover padding padrão para não interferir com width/height */
+        }
+    </style>
+</head>
+<body class="antialiased">
+    <!-- Header Fixo -->
+    <header class="fixed top-0 left-0 right-0 bg-opacity-90 backdrop-blur-sm z-50 shadow-lg py-4" style="background-color: var(--color-primary-dark);">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center">
+            <!-- Logo -->
+            <div class="text-2xl font-bold">
+                <span class="logo-rei">Rei</span> das Multimídias
+            </div>
+            <!-- Botão WhatsApp no Header -->
+            <a href="https://web.whatsapp.com/send?phone=5511952353508&entry_point=wa_pages&type=custom_url" target="_blank" class="whatsapp-button rounded-full py-2 px-4 flex items-center">
+                <i class="fab fa-whatsapp mr-2 text-lg"></i> Fale no WhatsApp
+            </a>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="relative h-screen flex items-center justify-center text-center overflow-hidden pt-24 pb-12 sm:pt-32 sm:pb-16" style="background-image: url('https://placehold.co/1920x1080/0d0d0d/1a1a1a?text=Fundo+Marmorizado+Escuro'); background-size: cover; background-position: center;">
+            <div class="absolute inset-0 bg-black opacity-70"></div> <!-- Overlay para escurecer a imagem de fundo -->
+            <div class="relative z-10 max-w-4xl px-4 sm:px-6 lg:px-8 fade-in">
+                <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-tight mb-4">
+                    Transforme seu carro em uma <span class="logo-rei">experiência completa!</span>
+                </h1>
+                <p class="text-lg sm:text-xl lg:text-2xl" style="color: var(--color-text-muted);">
+                    Instale sua multimídia com quem entende. Agende agora pelo WhatsApp.
+                </p>
+                <a href="https://web.whatsapp.com/send?phone=5511952353508&entry_point=wa_pages&type=custom_url" target="_blank" class="whatsapp-button mt-6 inline-block font-bold text-xl sm:text-2xl py-4 px-8 rounded-full shadow-2xl hover:shadow-green-500/50">
+                    <i class="fab fa-whatsapp mr-3 text-2xl"></i> Chamar no WhatsApp
+                </a>
+            </div>
+        </section>
+
+        <!-- Imagens de Multimídias Automotivas -->
+        <section class="py-16 sm:py-24 section-secondary-dark fade-in">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <h2 class="text-3xl sm:text-4xl font-bold text-center mb-12">Nossas Multimídias</h2>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Placeholder de imagem 1 -->
+                    <div class="rounded-xl overflow-hidden shadow-xl transform transition duration-300 hover:scale-105 card-item">
+                        <img src="https://i.imgur.com/XL4lu3w.jpeg" alt="Interface Moderna" class="w-full h-64 object-cover">
+                        <div class="p-6">
+                            <h3 class="text-xl font-semibold mb-2">Interfaces Intuitivas</h3>
+                            <p>Design elegante e fácil de usar para sua melhor experiência.</p>
+                        </div>
+                    </div>
+                    <!-- Placeholder de imagem 2 -->
+                    <div class="rounded-xl overflow-hidden shadow-xl transform transition duration-300 hover:scale-105 card-item">
+                        <img src="https://i.imgur.com/l3sp1LB.jpeg" alt="Central Multimídia Completa" class="w-full h-64 object-cover">
+                        <div class="p-6">
+                            <h3 class="text-xl font-semibold mb-2">Centrais Completas</h3>
+                            <p>Tudo o que você precisa em um só lugar: navegação, música e mais.</p>
+                        </div>
+                    </div>
+                    <!-- Placeholder de imagem 3 -->
+                    <div class="rounded-xl overflow-hidden shadow-xl transform transition duration-300 hover:scale-105 card-item">
+                        <img src="https://i.imgur.com/kpIEJW2.jpeg" alt="Telas Touch" class="w-full h-64 object-cover">
+                        <div class="p-6">
+                            <h3 class="text-xl font-semibold mb-2">Telas Touch HD</h3>
+                            <p>Visuais nítidos e controle responsivo na ponta dos seus dedos.</p>
+                        </div>
+                    </div>
+                    <!-- Placeholder de imagem 4 -->
+                    <div class="rounded-xl overflow-hidden shadow-xl transform transition duration-300 hover:scale-105 card-item">
+                        <img src="https://i.imgur.com/tFjQHry.png" alt="Conectividade Sem Fio" class="w-full h-64 object-cover">
+                        <div class="p-6">
+                            <h3 class="text-xl font-semibold mb-2">Conectividade Avançada</h3>
+                            <p>Integração perfeita com seus dispositivos favoritos.</p>
+                        </div>
+                    </div>
+                    <!-- Placeholder de imagem 5 -->
+                    <div class="rounded-xl overflow-hidden shadow-xl transform transition duration-300 hover:scale-105 card-item">
+                        <img src="https://i.imgur.com/Zzs9khQ.png" alt="Qualidade de Som Superior" class="w-full h-64 object-cover">
+                        <div class="p-6">
+                            <h3 class="text-xl font-semibold mb-2">Qualidade de Áudio Imersiva</h3>
+                            <p>Desfrute de um som cristalino e potente em suas viagens.</p>
+                        </div>
+                    </div>
+                    <!-- Placeholder de imagem 6 -->
+                    <div class="rounded-xl overflow-hidden shadow-xl transform transition duration-300 hover:scale-105 card-item">
+                        <img src="https://i.imgur.com/s27QOd8.png" alt="GPS Integrado" class="w-full h-64 object-cover">
+                        <div class="p-6">
+                            <h3 class="text-xl font-semibold mb-2">Navegação GPS Precisa</h3>
+                            <p>Chegue ao seu destino com confiança e facilidade.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Seção de Vídeo de Apresentação -->
+        <section class="py-16 sm:py-24 section-primary-dark fade-in">
+            <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                <h2 class="text-3xl sm:text-4xl font-bold mb-12">Veja a Multimídia em Ação!</h2>
+                <div class="video-responsive shadow-2xl">
+                    <iframe src="https://www.youtube.com/embed/5V46AddXMoE?rel=0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+            </div>
+        </section>
+
+        <!-- Benefícios com Ícones -->
+        <section class="py-16 sm:py-24 section-secondary-dark fade-in">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <h2 class="text-3xl sm:text-4xl font-bold text-center mb-12">Por que Escolher o <span class="logo-rei">Rei</span> das Multimídias?</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                    <!-- Benefício 1: Instalação Profissional -->
+                    <div class="rounded-xl p-8 text-center shadow-lg transition duration-300 hover:bg-gray-700 transform hover:scale-105 card-item">
+                        <div class="benefit-icon mb-4">
+                            <i class="fas fa-car-alt text-5xl"></i> <!-- Ícone de carro -->
+                        </div>
+                        <h3 class="text-xl font-semibold mb-2">Instalação Profissional</h3>
+                        <p>Equipe especializada garante um serviço impecável e seguro.</p>
+                    </div>
+                    <!-- Benefício 2: Qualidade de Som Premium -->
+                    <div class="rounded-xl p-8 text-center shadow-lg transition duration-300 hover:bg-gray-700 transform hover:scale-105 card-item">
+                        <div class="benefit-icon mb-4">
+                            <i class="fas fa-volume-up text-5xl"></i> <!-- Ícone de volume -->
+                        </div>
+                        <h3 class="text-xl font-semibold mb-2">Qualidade de Som Premium</h3>
+                        <p>Experiência sonora imersiva para suas viagens.</p>
+                    </div>
+                    <!-- Benefício 3: Conectividade Total -->
+                    <div class="rounded-xl p-8 text-center shadow-lg transition duration-300 hover:bg-gray-700 transform hover:scale-105 card-item">
+                        <div class="benefit-icon mb-4">
+                            <i class="fas fa-mobile-alt text-5xl"></i> <!-- Ícone de celular -->
+                        </div>
+                        <h3 class="text-xl font-semibold mb-2">Conectividade Total</h3>
+                        <p>Android Auto e Apple CarPlay para integração perfeita.</p>
+                    </div>
+                    <!-- Benefício 4: Atendimento Rápido e Personalizado -->
+                    <div class="rounded-xl p-8 text-center shadow-lg transition duration-300 hover:bg-gray-700 transform hover:scale-105 card-item">
+                        <div class="benefit-icon mb-4">
+                            <i class="fas fa-clock text-5xl"></i> <!-- Ícone de relógio -->
+                        </div>
+                        <h3 class="text-xl font-semibold mb-2">Atendimento Rápido</h3>
+                        <p>Suporte ágil e soluções personalizadas para você.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Seção de Perguntas Frequentes (FAQ) -->
+        <section class="py-16 sm:py-24 section-primary-dark fade-in">
+            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+                <h2 class="text-3xl sm:text-4xl font-bold text-center mb-12">Perguntas Frequentes (FAQ)</h2>
+                <div class="space-y-6">
+                    <!-- Pergunta 1 -->
+                    <div class="rounded-xl shadow-lg p-6 card-item">
+                        <h3 class="text-xl font-semibold mb-2">Qual o tempo médio de instalação?</h3>
+                        <p>O tempo de instalação varia conforme o modelo do veículo e da multimídia, mas geralmente leva entre 2 a 4 horas.</p>
+                    </div>
+                    <!-- Pergunta 2 -->
+                    <div class="rounded-xl shadow-lg p-6 card-item">
+                        <h3 class="text-xl font-semibold mb-2">Vocês oferecem garantia na instalação e nos produtos?</h3>
+                        <p>Sim, oferecemos garantia tanto na instalação quanto nos produtos, seguindo as diretrizes dos fabricantes.</p>
+                    </div>
+                    <!-- Pergunta 3 -->
+                    <div class="rounded-xl shadow-lg p-6 card-item">
+                        <h3 class="text-xl font-semibold mb-2">Minha multimídia será compatível com meu smartphone?</h3>
+                        <p>Nossas multimídias são compatíveis com Android Auto e Apple CarPlay, garantindo ampla conectividade com a maioria dos smartphones modernos.</p>
+                    </div>
+                    <!-- Pergunta 4 -->
+                    <div class="rounded-xl shadow-lg p-6 card-item">
+                        <h3 class="text-xl font-semibold mb-2">Como faço para agendar um orçamento ou instalação?</h3>
+                        <p>Você pode agendar facilmente clicando em qualquer um dos botões "Chamar no WhatsApp" presentes na página.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Seção de Depoimentos de Clientes -->
+        <section class="py-16 sm:py-24 section-secondary-dark fade-in">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <h2 class="text-3xl sm:text-4xl font-bold text-center mb-12">O que nossos clientes dizem</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Depoimento 1 -->
+                    <div class="rounded-xl shadow-lg p-6 text-center card-item">
+                        <p class="italic mb-4">"Atendimento impecável e instalação super rápida! Minha multimídia nova ficou perfeita, superou minhas expectativas."</p>
+                        <p class="font-semibold text-white">- Ana Lúcia S.</p>
+                        <p class="text-sm">Via Google Reviews</p>
+                    </div>
+                    <!-- Depoimento 2 -->
+                    <div class="rounded-xl shadow-lg p-6 text-center card-item">
+                        <p class="italic mb-4">"A qualidade do som é incrível! Recomendo a todos que buscam profissionalismo e os melhores equipamentos."</p>
+                        <p class="font-semibold text-white">- João Pedro M.</p>
+                        <p class="text-sm">Via Google Reviews</p>
+                    </div>
+                    <!-- Depoimento 3 -->
+                    <div class="rounded-xl shadow-lg p-6 text-center card-item">
+                        <p class="italic mb-4">"Fui muito bem atendido desde o primeiro contato. Tiraram todas as minhas dúvidas e o resultado final foi sensacional."</p>
+                        <p class="font-semibold text-white">- Carla R.</p>
+                        <p class="text-sm">Via Google Reviews</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Rodapé -->
+    <footer class="py-12 sm:py-16 text-gray-400" style="background-color: var(--color-primary-dark);">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center md:flex md:justify-between md:items-center">
+            <div class="mb-6 md:mb-0">
+                <h3 class="text-xl font-bold text-white mb-2"><span class="logo-rei">Rei</span> das Multimídias</h3>
+                <p>Transformando sua experiência ao dirigir.</p>
+            </div>
+            <div class="mb-6 md:mb-0">
+                <h3 class="text-xl font-bold text-white mb-2">Contato</h3>
+                <p>ReiDasMultimidias02@gmail.com</p>
+                <p>(11) 95235-3508</p>
+            </div>
+            <div>
+                <h3 class="text-xl font-bold text-white mb-2">Localização</h3>
+                <p>Av. Braz Leme, 175 - Casa Verde</p>
+                <p>São Paulo - SP, 02511-000</p>
+            </div>
+        </div>
+        <div class="text-center mt-8 pt-8 border-t border-gray-800">
+            <p>&copy; 2025 Rei das Multimídias. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+    <!-- Botão Flutuante de WhatsApp -->
+    <a href="https://web.whatsapp.com/send?phone=5511952353508&entry_point=wa_pages&type=custom_url" target="_blank" class="fixed bottom-6 right-6 rounded-full shadow-lg z-50 transition duration-300 ease-in-out transform hover:scale-110 whatsapp-button floating-whatsapp-button">
+        <i class="fab fa-whatsapp text-3xl"></i>
+    </a>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // JavaScript para animações de fade-in ao rolar
+            const fadeInElements = document.querySelectorAll('.fade-in');
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('appear');
+                        observer.unobserve(entry.target); // Deixa de observar depois de aparecer
+                    }
+                });
+            }, {
+                threshold: 0.1 // Quando 10% do elemento estiver visível
+            });
+
+            fadeInElements.forEach(element => {
+                observer.observe(element);
+            });
+        });
+    </script>
+</body>
+</html>
